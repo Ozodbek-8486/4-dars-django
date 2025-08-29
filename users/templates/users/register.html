@@ -1,14 +1,3 @@
-{% if messages %}
-    <ul style="margin-bottom: 15px;">
-        {% for message in messages %}
-            <li style="padding: 10px; background: #f8d7da; border-radius: 8px; margin-bottom: 5px; color: #721c24;">
-                {{ message }}
-            </li>
-        {% endfor %}
-    </ul>
-{% endif %}
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,6 +17,7 @@
             background: white; padding: 40px; border-radius: 15px;
             box-shadow: 0 15px 35px rgba(0,0,0,0.1);
             width: 100%; max-width: 450px;
+            position: relative;
         }
         h1 {
             color: #333; margin-bottom: 25px; text-align: center;
@@ -50,6 +40,26 @@
             transition: all 0.3s;
         }
         button:hover { transform: translateY(-2px); }
+
+        /* Messages styling */
+        .register-message {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 8px;
+            font-weight: 600;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+        .register-message.success {
+            background-color: #d4edda;
+            color: #155724;
+            opacity: 1;
+        }
+        .register-message.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            opacity: 1;
+        }
     </style>
 </head>
 <body>
@@ -73,6 +83,27 @@
         <input type="password" id="password" name="password" required>
 
         <button type="submit">Sign Up</button>
+
+        <!-- Messages -->
+        {% if messages %}
+            {% for message in messages %}
+                <p class="register-message {% if message.tags %}{{ message.tags }}{% endif %}">
+                    {{ message }}
+                </p>
+            {% endfor %}
+        {% endif %}
     </form>
+
+    <!-- Optional JS for fade-out -->
+    <script>
+    window.addEventListener('DOMContentLoaded', () => {
+        const messages = document.querySelectorAll('.register-message');
+        messages.forEach(msg => {
+            setTimeout(() => {
+                msg.style.opacity = '0';
+            }, 3000); // 3 soniyadan keyin yo‘qoladi
+        });
+    });
+    </script>
 </body>
 </html>
