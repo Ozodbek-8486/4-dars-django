@@ -41,7 +41,7 @@
         }
         button:hover { transform: translateY(-2px); }
 
-        /* Messages styling */
+        
         .login-message {
             margin-top: 10px;
             padding: 10px;
@@ -60,6 +60,12 @@
             color: #721c24;
             opacity: 1;
         }
+
+        .royxat{
+            color: blue;
+            text-decoration: none;
+            margin-left: 35%;
+        }
     </style>
 </head>
 <body>
@@ -75,7 +81,12 @@
 
         <button type="submit">Sign In</button>
 
-        <!-- Messages -->
+        <br>
+        <br>
+        <p style="text-align: center;">Agar hisobingiz bo'lmasa ro'yxatdan o'ting</p>
+        <a href="{% url 'users:register' %}" class="royxat">Ro'yxatdan o'tish</a>
+
+        
         {% if messages %}
             {% for message in messages %}
                 <p class="login-message {% if message.tags %}{{ message.tags }}{% endif %}">
@@ -85,14 +96,14 @@
         {% endif %}
     </form>
 
-    <!-- Optional JS for fade-out -->
+    
     <script>
     window.addEventListener('DOMContentLoaded', () => {
         const messages = document.querySelectorAll('.login-message');
         messages.forEach(msg => {
             setTimeout(() => {
                 msg.style.opacity = '0';
-            }, 3000); // 3 soniyadan keyin yo‘qoladi
+            }, 3000); 
         });
     });
     </script>

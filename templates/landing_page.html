@@ -24,7 +24,7 @@ body {
 }
 
 
-        /* Header */
+        
         .header {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
@@ -88,12 +88,7 @@ body {
             transform: translateY(-2px);
         }
 
-        /* Navigation */
-        .nav {
-            /* background: white; */
-            /* padding: 1rem 0; */
-            /* box-shadow: 0 2px 5px rgba(0,0,0,0.1); */
-        }
+       
 
         .nav-container {
             max-width: 1200px;
@@ -122,7 +117,7 @@ body {
             color: white;
         }
 
-        /* Hero Section */
+        
         .hero {
             background: linear-gradient(rgba(102, 126, 234, 0.8), rgba(118, 75, 162, 0.8)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 600"><rect fill="%23667eea" width="1000" height="600"/><circle fill="%23764ba2" cx="200" cy="150" r="100" opacity="0.3"/><circle fill="%23667eea" cx="800" cy="400" r="150" opacity="0.2"/></svg>');
             background-size: cover;
@@ -145,7 +140,7 @@ body {
             opacity: 0.9;
         }
 
-        /* Main Content */
+      
         .main {
             max-width: 1200px;
             margin: 4rem auto;
@@ -172,7 +167,6 @@ body {
             border-radius: 2px;
         }
 
-        /* Blog Grid */
         .blog-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -238,7 +232,7 @@ body {
             color: #764ba2;
         }
 
-        /* Sidebar */
+ 
         .sidebar {
             background: white;
             padding: 2rem;
@@ -273,7 +267,7 @@ body {
             color: #667eea;
         }
 
-        /* Footer */
+   
         .footer {
             background: #333;
             color: white;
@@ -329,7 +323,6 @@ body {
             opacity: 0.7;
         }
 
-        /* Responsive Design */
         @media (max-width: 768px) {
             .header-container {
                 flex-direction: column;
@@ -450,7 +443,7 @@ body {
     </style>
 </head>
 <body>
-    <!-- Header -->
+
 <header class="header">
     <div class="header-container">
         <a href="#" class="logo">BlogSayt</a>
@@ -475,8 +468,7 @@ body {
     </div>
 </header>
 
-    <!-- Navigation -->
- 
+
 
 
 
@@ -490,7 +482,7 @@ body {
             <div class="project-content">
                 <h3 class="project-title">ExploitX</h3>
                 <p class="project-excerpt">Bu loyiha asosan Kali Linuxni o'rganish  uchun ishlab chiqilgan.</p>
-                <a href="https://zomind.uz" class="btn btn-secondary">Batafsil</a>
+                <a href="https://zomind.uz" class="btn btn-secondary" target="_blank">Batafsil</a>
             </div>
         </div>
 
@@ -501,19 +493,21 @@ body {
             <div class="project-content">
                 <h3 class="project-title">Zenwood-store</h3>
                 <p class="project-excerpt">Bu loyiha Onlayn do'kon uchun ishlab chiqilgan ammo</p>
-                <a href="https://github.com/Ozodbek-8486/Universal-Do-kon" class="btn btn-secondary">Batafsil</a>
+                <a href="https://github.com/Ozodbek-8486/Universal-Do-kon" class="btn btn-secondary" target="_blank">Batafsil</a>
             </div>
         </div>
 
     </div>
-    <!-- Lightbox modal -->
+
 <div id="lightbox" onclick="closeLightbox(event)">
     <span class="close" onclick="closeLightbox(event)">&times;</span>
     <img class="lightbox-content" id="lightbox-img">
 </div>
 
 </section>
+
 <script>
+
 function openLightbox(img) {
     document.getElementById("lightbox").style.display = "flex";
     document.getElementById("lightbox-img").src = img.src;

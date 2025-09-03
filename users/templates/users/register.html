@@ -41,7 +41,7 @@
         }
         button:hover { transform: translateY(-2px); }
 
-        /* Messages styling */
+        
         .register-message {
             margin-top: 10px;
             padding: 10px;
@@ -60,6 +60,12 @@
             color: #721c24;
             opacity: 1;
         }
+        .kirish{
+            color: blue;
+            text-decoration: none;
+            margin-left: 35%;
+            size: 100px;
+        }
     </style>
 </head>
 <body>
@@ -72,9 +78,9 @@
 
         <label for="first_name">First name:</label>
         <input type="text" id="first_name" name="first_name" required>
-
+        
         <label for="last_name">Last name:</label>
-        <input type="text" id="last_name" name="last_name">
+        <input type="text" id="last_name" name="last_name"> 
 
         <label for="email">Email:</label>
         <input type="email" id="email" name="email" required>
@@ -84,7 +90,11 @@
 
         <button type="submit">Sign Up</button>
 
-        <!-- Messages -->
+        <br>
+        <br>
+        <p style="text-align: center;">Agar hisobingiz bo'lsa Login qilib kirishingiz mumkin.</p>
+        <a href="{% url 'users:login' %}" class="kirish">Hisobga kirish</a>
+        
         {% if messages %}
             {% for message in messages %}
                 <p class="register-message {% if message.tags %}{{ message.tags }}{% endif %}">
@@ -94,14 +104,14 @@
         {% endif %}
     </form>
 
-    <!-- Optional JS for fade-out -->
+    
     <script>
     window.addEventListener('DOMContentLoaded', () => {
         const messages = document.querySelectorAll('.register-message');
         messages.forEach(msg => {
             setTimeout(() => {
                 msg.style.opacity = '0';
-            }, 3000); // 3 soniyadan keyin yo‘qoladi
+            }, 3000); 
         });
     });
     </script>
