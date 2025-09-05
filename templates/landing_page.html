@@ -7,6 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mening Blog Saytim</title>
+    <link rel="icon" href="{% static 'images/globe-dots.png' %}">
     <style>
         * {
             margin: 0;
@@ -364,16 +365,17 @@ body {
     }
 
     .project-card {
-        background: white;
+        background: rgb(255, 255, 255);
         border-radius: 15px;
         overflow: hidden;
-        box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        box-shadow: 0 5px 20px rgb(0, 0, 0);
         transition: all 0.3s ease;
+        border-color: black;
     }
 
     .project-card:hover {
         transform: translateY(-10px);
-        box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.575);
     }
 
     .project-image img {
