@@ -71,24 +71,24 @@
 <body>
     <form method="post" action="{% url 'users:register' %}">
         {% csrf_token %}
-        <h1>Register</h1>
+        <h1>Ro'yxatdan o'tish</h1>
 
         <label for="username">Username:</label>
         <input type="text" id="username" name="username" required>
 
-        <label for="first_name">First name:</label>
+        <label for="first_name">Ismingiz:</label>
         <input type="text" id="first_name" name="first_name" required>
         
-        <label for="last_name">Last name:</label>
+        <label for="last_name">Familiyangiz:</label>
         <input type="text" id="last_name" name="last_name"> 
 
         <label for="email">Email:</label>
         <input type="email" id="email" name="email" required>
 
-        <label for="password">Password:</label>
+        <label for="password">Parolingiz:</label>
         <input type="password" id="password" name="password" required>
 
-        <button type="submit">Sign Up</button>
+        <button type="submit">Ro'yxatdan o'tish</button>
 
         <br>
         <br>
