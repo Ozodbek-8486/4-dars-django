@@ -57,4 +57,16 @@ class LogoutView(View):
         logout(request)
         messages.success(request, "Tizimga kirish qismidasiz!")
         return redirect("home")  
+    
 
+
+# New warlar uchun class
+
+
+class AboutWiev(View):
+    def get(self,request):
+        return render(request, 'users/about.html')
+    
+
+def landing_page(request):
+    return render(request, 'landing_page.html')

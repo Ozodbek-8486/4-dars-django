@@ -1,15 +1,10 @@
-{% load static %}
-
-
-<!DOCTYPE html>
-<html lang="uz">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mening Blog Saytim</title>
-    <link rel="icon" href="{% static 'images/globe-dots.png' %}">
+    <title>Bosh qisimga xush kelibsiz.</title>
     <style>
-        * {
+                * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -441,17 +436,19 @@ body {
     font-weight: bold;
     cursor: pointer;
 }
-
     </style>
 </head>
 <body>
-
+    
 <header class="header">
     <div class="header-container">
-        <a href="#" class="logo">BlogSaytim</a>
+        <a href="{% url 'users:landing_page' %}" class="logo" style="margin-right: 2%;">BlogSaytim</a>
+        <a href="javascript:history.back()" class="back-btn" style="color: white;text-decoration: none;"> <i class="fas fa-arrow-left"><</i>  Orqaga qaytish</a>
            <nav class="nav">
         <div class="nav-container">
             <ul class="nav-menu">
+
+
                 <li><a href="{% url 'users:about' %}">Bosh sahifa</a></li>
                 <li><a href="#blog">Blog</a></li>
                 <li><a href="#haqida">Biz haqimizda</a></li>
@@ -472,56 +469,5 @@ body {
 
 
 
-
-
-<section id="loyihalarim" class="main">
-    <h2 class="section-title">Mening Loyiha va Ishlarim</h2>
-    <div class="project-grid">
-        <div class="project-card">
-            <div class="project-image">
-                <img src="{% static 'images/exploit.png' %}" alt="Loyiha 1" onclick="openLightbox(this)" style="cursor: pointer;">
-            </div>
-            <div class="project-content">
-                <h3 class="project-title">ExploitX</h3>
-                <p class="project-excerpt">Bu loyiha asosan Kali Linuxni o'rganish  uchun ishlab chiqilgan.</p>
-                <a href="https://zomind.uz" class="btn btn-secondary" target="_blank">Batafsil</a>
-            </div>
-        </div>
-
-        <div class="project-card">
-            <div class="project-image">
-                <img src="{% static 'images/Zenwood-store.png' %}" alt="Loyiha 2" onclick="openLightbox(this)" style="cursor: pointer;">
-            </div>
-            <div class="project-content">
-                <h3 class="project-title">Zenwood-store</h3>
-                <p class="project-excerpt">Bu loyiha Onlayn do'kon uchun ishlab chiqilgan ammo</p>
-                <a href="https://github.com/Ozodbek-8486/Universal-Do-kon" class="btn btn-secondary" target="_blank">Batafsil</a>
-            </div>
-        </div>
-
-    </div>
-
-<div id="lightbox" onclick="closeLightbox(event)">
-    <span class="close" onclick="closeLightbox(event)">&times;</span>
-    <img class="lightbox-content" id="lightbox-img">
-</div>
-
-</section>
-
-<script>
-
-function openLightbox(img) {
-    document.getElementById("lightbox").style.display = "flex";
-    document.getElementById("lightbox-img").src = img.src;
-}
-
-function closeLightbox(event) {
-    if (event.target.id === "lightbox" || event.target.className === "close") {
-        document.getElementById("lightbox").style.display = "none";
-    }
-}
-</script>
-
-   
 </body>
 </html>
