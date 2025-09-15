@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kitoblar</title>
+    <style>
+        .kitob {
+            text-align: center;
+            
+        }
+        .detail{
+            font-size: 20px;
+            margin: 10px;
+            display: block;
+            text-align: center;
+            margin-right: 2%;
+            margin-left: 42%;
+        }
+        .detail {
+            text-decoration: none;
+            color: rgb(0, 0, 0);
+            cursor: pointer;
+            border: 1px solid black;
+            width: 200px;
+            border-radius: 8px ;
+            padding: 1%;
+        }
+        .detail:hover{
+            background-color: black;
+            color: white;
+            box-shadow: 2px 2px 10px grey;
+        }
+    </style>
+</head>
+
+<body>
+    <br>
+        <a href="{% url 'users:landing_page' %}" style="color: black;text-decoration: none; margin-left: 3%;font-size: 20px;"> ⬅ Orqaga</a>
+
+    <h1 class="kitob">Kitoblar ro'yxati</h1>
+    <ul>
+        {% for book in books %}
+        <a href="{% url 'books:detail' book.id %}" class="detail">{{ book.title }} {{ book.author }}</a>
+        {% endfor %}
+</body>
+
+</html>
+
+
