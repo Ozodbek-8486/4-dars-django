@@ -1,4 +1,3 @@
-# users/views.py
 from django.shortcuts import render, redirect
 from django.views import View
 from django.contrib.auth import authenticate, login, logout
@@ -51,7 +50,7 @@ class RegisterView(View):
         messages.success(request, "Ro‘yxatdan muvaffaqiyatli o‘tdingiz! Endi login qilishingiz mumkin.")
         return redirect("users:login")
 
-#
+
 class LogoutView(View):
     def get(self, request):
         logout(request)
@@ -60,7 +59,8 @@ class LogoutView(View):
     
 
 
-# New warlar uchun class
+
+
 
 
 class AboutWiev(View):
