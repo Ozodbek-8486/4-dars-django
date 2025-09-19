@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kitoblar</title>
     <style>
+        body{
+            cursor: none;
+        }
         .kitob {
             text-align: center;
             
@@ -31,19 +34,57 @@
             background-color: black;
             color: white;
             box-shadow: 2px 2px 10px grey;
+            
         }
+        .back{
+            color: black;
+            text-decoration: none;
+            margin-left: 3%;
+            font-size: 20px;
+        }
+        .back:hover{
+            background-color: black;
+            color: white;
+            border: 1px solid;
+            border-radius: 8px ;
+            padding: 10px;
+            box-shadow: 5px 5px 10px grey;
+            border: none;
+        }
+        .cursor{
+            width: 20px;
+            height: 20px;
+            border: 2px solid red;
+            border-radius: 90px;
+            position: fixed;
+            pointer-events: none;
+            transform: translate(-50%,-50%);
+        }
+        
+
     </style>
 </head>
 
 <body>
     <br>
-        <a href="{% url 'users:landing_page' %}" style="color: black;text-decoration: none; margin-left: 3%;font-size: 20px;"> ⬅ Orqaga</a>
+        <a href="{% url 'users:landing_page' %}"  class="back"> ⬅ Orqaga</a>
 
     <h1 class="kitob">Kitoblar ro'yxati</h1>
     <ul>
         {% for book in books %}
+        <div class="cursor">
+
+        </div>
         <a href="{% url 'books:detail' book.id %}" class="detail">{{ book.title }} {{ book.author }}</a>
         {% endfor %}
+
+        <script>
+            const cursor = document.querySelector(".cursor");
+            document.addEventListener("mousemove" , e => {
+                cursor.style.left = e.pageX + "px";
+                cursor.style.top = e.pageY + "px";
+            });
+        </script>
 </body>
 
 </html>

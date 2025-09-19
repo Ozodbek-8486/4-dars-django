@@ -1,15 +1,10 @@
-{% load static %}
-
-
-<!DOCTYPE html>
-<html lang="uz">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mening Blog Saytim</title>
-    <link rel="icon" href="{% static 'images/globe-dots.png' %}">
+    <title>Bosh qisimga xush kelibsiz.</title>
     <style>
-        * {
+                * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -22,7 +17,6 @@ body {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    background-color: black;
 }
 
 
@@ -62,7 +56,7 @@ body {
             padding: 0.7rem 1.5rem;
             border: none;
             border-radius: 25px;
-            cursor: none;
+            cursor: pointer;
             text-decoration: none;
             font-weight: 500;
             transition: all 0.3s ease;
@@ -81,17 +75,13 @@ body {
         }
 
         .btn-register {
-            background: transparent;
-            color: #ffffff;
-            border: 2px solid;
-            border-radius: 25px;
+            background: white;
+            color: #667eea;
         }
 
         .btn-register:hover {
-            background: #ffffff;
+            background: #f0f0f0;
             transform: translateY(-2px);
-            color: #667eea;
-            border: none;
         }
 
        
@@ -373,7 +363,7 @@ body {
         background: rgb(255, 255, 255);
         border-radius: 15px;
         overflow: hidden;
-        box-shadow: 0 5px 20px rgb(255, 255, 255);
+        box-shadow: 0 5px 20px rgb(0, 0, 0);
         transition: all 0.3s ease;
         border-color: black;
     }
@@ -392,24 +382,23 @@ body {
 
     .project-content {
         padding: 1.5rem;
-        background-color: #6a59fc;
     }
 
     .project-title {
         font-size: 1.3rem;
         margin-bottom: 0.5rem;
-        color: #ffffff;
+        color: #333;
     }
 
     .project-excerpt {
-        color: #ffffff;
+        color: #555;
         line-height: 1.6;
         margin-bottom: 1rem;
     }
 
     .btn-secondary {
         background: #4ecdc4;
-        color: rgb(0, 0, 0);
+        color: white;
         padding: 10px 20px;
         border-radius: 8px;
         text-decoration: none;
@@ -439,6 +428,8 @@ body {
     border-radius: 10px;
 }
 
+
+
 #lightbox .close {
     position: absolute;
     top: 20px; right: 30px;
@@ -448,19 +439,36 @@ body {
     cursor: pointer;
 }
 
+
+.eror{
+    text-align: center;
+}
+
+.tort{
+    text-align: center;
+}
+
+.not{
+    font-size: 30px;
+    padding: 17%;
+}
+
     </style>
 </head>
 <body>
-
+    
 <header class="header">
     <div class="header-container">
-        <a href="#" class="logo">BlogSaytim</a>
+        <a href="{% url 'users:landing_page' %}" class="logo" style="margin-right: 2%;">BlogSaytim</a>
+        <!-- <a href="javascript:history.back()" class="back-btn" style="color: white;text-decoration: none;"> <i class="fas fa-arrow-left"><</i>  Orqaga qaytish</a> -->
            <nav class="nav">
         <div class="nav-container">
             <ul class="nav-menu">
+
+
                 <li><a href="{% url 'users:home' %}">Bosh sahifa</a></li>
                 <li><a href="{% url 'users:blog' %}">Blog</a></li>
-                <li><a href="{% url 'users:about' %}">Men haqimda</a></li>
+                <li><a href="{% url 'users:about' %}">Biz haqimizda</a></li>
                 <li><a href="{% url 'users:contact' %}">Aloqa</a></li>
                 <li><a href="{% url 'books:list' %}">Kitoblar</a></li>
             </ul>
@@ -477,58 +485,10 @@ body {
     </div>
 </header>
 
-
-
-
-
-<section id="loyihalarim" class="main">
-    <h2 class="section-title">Mening Loyiha va Ishlarim</h2>
-    <div class="project-grid">
-        <div class="project-card">
-            <div class="project-image">
-                <img src="{% static 'images/exploit.png' %}" alt="Loyiha 1" onclick="openLightbox(this)" style="cursor: pointer;">
-            </div>
-            <div class="project-content">
-                <h3 class="project-title">ExploitX</h3>
-                <p class="project-excerpt">Bu loyiha asosan Kali Linuxni o'rganish  uchun ishlab chiqilgan.</p>
-                <a href="https://zomind.uz" class="btn btn-secondary" target="_blank">Batafsil</a>
-            </div>
-        </div>
-
-        <div class="project-card">
-            <div class="project-image">
-                <img src="{% static 'images/Zenwood-store.png' %}" alt="Loyiha 2" onclick="openLightbox(this)" style="cursor: pointer;">
-            </div>
-            <div class="project-content">
-                <h3 class="project-title">Zenwood-store</h3>
-                <p class="project-excerpt">Bu loyiha Onlayn do'kon uchun ishlab chiqilgan ammo</p>
-                <a href="https://github.com/Ozodbek-8486/Universal-Do-kon" class="btn btn-secondary" target="_blank">Batafsil</a>
-            </div>
-        </div>
-
-    </div>
-
-<div id="lightbox" onclick="closeLightbox(event)">
-    <span class="close" onclick="closeLightbox(event)">&times;</span>
-    <img class="lightbox-content" id="lightbox-img">
+<div class="not">
+<h1 class="tort">404</h1>
+<p class="eror">Not found error!</p>
 </div>
 
-</section>
-
-<script>
-
-function openLightbox(img) {
-    document.getElementById("lightbox").style.display = "flex";
-    document.getElementById("lightbox-img").src = img.src;
-}
-
-function closeLightbox(event) {
-    if (event.target.id === "lightbox" || event.target.className === "close") {
-        document.getElementById("lightbox").style.display = "none";
-    }
-}
-</script>
-
-   
 </body>
 </html>

@@ -63,10 +63,36 @@ class LogoutView(View):
 
 
 
-class AboutWiev(View):
+class HomeWiev(View):
     def get(self,request):
-        return render(request, 'users/about.html')
+        return render(request, 'users/home.html')
     
 
+def landing_page(request):
+    return render(request, 'landing_page.html')
+
+
+class BlogView(View):
+    def get(self,request):
+        return render(request, 'users/blog.html')
+    
+def landing_page(request):
+    return render(request, 'landing_page.html')
+
+
+class AboutView(View):
+       def get(self,request):
+        return render(request, 'users/about.html')
+       
+
+def landing_page(request):
+    return render(request, 'landing_page.html')
+
+
+
+class ContactView(View):
+        def get(self,request):
+            return render(request, 'users/contact.html')
+        
 def landing_page(request):
     return render(request, 'landing_page.html')
