@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.hashers import make_password, check_password
+from django.contrib.auth.hashers import make_password, check_password 
 
 class User(models.Model):
     username = models.CharField(max_length=150, unique=True)
@@ -14,3 +14,6 @@ class User(models.Model):
 
     def __str__(self):
         return self.username
+    
+
+

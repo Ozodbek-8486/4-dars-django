@@ -4,138 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body {
-            font-family: 'Segoe UI', sans-serif;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            min-height: 100vh;
-            display: flex; justify-content: center; align-items: center;
-            padding: 20px;
-        }
-        form {
-            background: white; padding: 40px; border-radius: 15px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-            width: 100%; max-width: 450px;
-            position: relative;
-        }
-        h1 {
-            color: #333; margin-bottom: 25px; text-align: center;
-        }
-        label { font-weight: 600; margin-bottom: 8px; display: block; }
-        input {
-            width: 100%; padding: 12px 16px; margin-bottom: 20px;
-            border: 2px solid #aaa4a4; border-radius: 8px;
-            transition: 0.3s;
-            cursor: pointer;
-            
-        }
-        input:focus {
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102,126,234,0.1);
-        }
-        input::placeholder{
-            color: rgb(65, 63, 63);
-            font-size: 15px;
-        }
-        button {
-            width: 100%; padding: 14px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white; border: none; border-radius: 8px;
-            font-weight: 600; cursor: pointer;
-            transition: all 0.3s;
-            font-size: 14px;
-        }
-        button:hover { transform: translateY(-2px); }
-
-        
-        .login-message {
-            margin-top: 10px;
-            padding: 10px;
-            border-radius: 8px;
-            font-weight: 600;
-            opacity: 0;
-            transition: opacity 0.5s ease-in-out;
-        }
-        .login-message.success {
-            background-color: #d4edda;
-            color: #155724;
-            opacity: 1;
-        }
-        .login-message.error {
-            background-color: #f8d7da;
-            color: #721c24;
-            opacity: 1;
-        }
-
-        .royxat{
-            color: blue;
-            text-decoration: none;
-            margin-left: 35%;
-            font-size: 15px;
-        }
-        .back{
-            color: black;
-            text-decoration: none;
-            margin-right: 1%;
-            padding: -2%;
-           margin: -2%;
-           margin-top: 50px;
-           /* border: 2px solid; */
-           border-radius: 8px;
-           padding: 1%;
-        }
-        .back:hover{
-            border: 1px solid;
-            border-radius: 8px;
-            padding: 2%;
-            background-color: black;
-            color: white;
-        }
-    </style>
 </head>
 <body>
-    
-    <form method="post" action="{% url 'users:login' %}">
-        {% csrf_token %}
-        <br>
-        <a href="{% url 'users:landing_page' %}" class="back">⬅ Orqaga</a>
-        <br><br>
-        <h1>Hisobga kirish</h1>
+    <h1>Login saxifasiga xush kelibsiz!</h1>
 
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required placeholder="Username">
-
-        <label for="password">Parolingiz:</label>
-        <input type="password" id="password" name="password" required placeholder="Parolingiz">
-
-        <button type="submit">Kirish</button>
-
-        <br>
-        <br>
-        <p style="text-align: center;">Agar hisobingiz bo'lmasa ro'yxatdan o'ting</p>
-        <a href="{% url 'users:register' %}" class="royxat">Ro'yxatdan o'tish</a>
-
-        
-        {% if messages %}
-            {% for message in messages %}
-                <p class="login-message {% if message.tags %}{{ message.tags }}{% endif %}">
-                    {{ message }}
-                </p>
-            {% endfor %}
-        {% endif %}
-    </form>
-
-    
-    <script>
-    window.addEventListener('DOMContentLoaded', () => {
-        const messages = document.querySelectorAll('.login-message');
-        messages.forEach(msg => {
-            setTimeout(() => {
-                msg.style.opacity = '0';
-            }, 3000); 
-        });
-    });
-    </script>
+    <p>
+        <form method="post">
+            {% csrf_token %}
+            {{ login_form.as_p }}
+            <button>Login</button>
+        </form>
+    </p>
 </body>
 </html>

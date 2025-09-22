@@ -1,23 +1,24 @@
+# users/tests.py
 from django.test import TestCase
-from django.contrib.auth.models import User
 from django.urls import reverse
+from django.contrib.auth.models import User
 
-class Testcaselogin(TestCase):
+
+
+class LogoutTestCase(TestCase):
     def setUp(self):
-        self.username = "TestUser123"
-        self.password = "Admin111"
+        self.username = "testuser"
+        self.password = "testuserpassword"
         self.user = User.objects.create_user(
-            username=self.username,
-            password=self.password
+            username=self.username, password=self.password
         )
-        
-    def test_login_valid(self):
-        data = {
-            "username": self.username,
-            "password": self.password
-        }
-        response = self.client.post(reverse("users:login"), data=data)
 
-        self.assertRedirects(response, reverse("landing_page")) 
-        user = User.objects.get(username=self.username)
-        self.assertTrue(user.is_authenticated)
+    def test_logout(self):
+        # Login qilamiz
+        self.client.login(username=self.username, password=self.password)
+
+        # Logout qilamiz
+        response = self.client.get(reverse("users:logout"))
+
+        # Redirect bo‘lishini tekshiramiz
+        self.assertRedirects(response, reverse("landing"))

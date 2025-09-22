@@ -7,6 +7,11 @@ SECRET_KEY = 'django-insecure-ew3$3%89ey#z8^po4mzu$$6jqs8+ka@p=dk6wb80xh@v!pw2_@
 
 DEBUG = True
 
+LOGOUT_REDIRECT_URL = '/'   
+
+
+LOGIN_URL = "users:login"
+
 ALLOWED_HOSTS = ["*"]  
 
 INSTALLED_APPS = [
@@ -32,6 +37,11 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'django4.urls'
+
+
+
+
+
 
 TEMPLATES = [
     {
