@@ -5,16 +5,67 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile page</title>
+    <style>
+.username{
+    text-align: center;
+}
+.user{
+    text-align: center;
+    margin-right: 30%;
+}
+.first{
+    text-align: center;
+    margin-right: 30%;
+}
+.last{
+    text-align: center;
+    margin-right: 22%;
+}
+.email{
+    text-align: center;
+    margin-left: 12%;
+}
+body{
+    margin-top: 5%;
+    border: 2px solid;
+    width: 400px;
+    margin-left: 38%;
+    height: 300px;
+    border-radius: 8px;
+}
+
+
+.orqaga{
+    color: black;
+    text-decoration: none;
+    margin-left: 40%;
+    margin-top: 12%;
+    border: 2px solid;
+    border-radius: 8px;
+    padding: 3%;
+}
+
+.orqaga:hover{
+    background-color: black;
+    color: white;
+    border: none;
+}
+    </style>
 </head>
-
+<br>
 <body>
-    <h1>{{ user.username }}ning saxifasi</h1>
+    <h1 class="username">{{ user.username }}ning saxifasi</h1>
 
-    <p>Username: {{ user.username }}</p>
-    <p>Fist name: {{ user.first_name }}</p>
-    <p>Last name: {{ user.last_name }}</p>
-    <p>Email: {{ user.email }}</p>
+    <p class="user">Username: {{ user.username }} <br>__________________</p>
+   
+    <p class="first">Fist name: {{ user.first_name }} <br> _________________</p>
+   
+    <p class="last">Last name: {{ user.last_name }} <br> ____________________ </p>
+    
+    <p class="email">Email: {{ user.email }} <br>_____________________________________ </p>
 
 </body>
+<br><br><br><br>
+<a href="{% url 'users:landing' %}" class="orqaga">Orqaga</a>
 
 </html>

@@ -123,8 +123,8 @@ body {
         }
 
         .nav-menu a:hover {
-            background: #1a399e;
-            color: white;
+            background: #ffffff;
+            color: rgb(29, 76, 231);
         }
 
         
@@ -453,7 +453,7 @@ body {
 }
 
 .btn-profile{
-    background: transparent;
+            background: transparent;
             color: #ffffff;
             border: 2px solid;
             border-radius: 25px;
@@ -461,12 +461,24 @@ body {
 }
 
 .btn-profile:hover{
-         background: #ffffff;
+            background: #ffffff;
             transform: translateY(-2px);
             color: #667eea;
             border: none;
 }
 
+.btn-kitob{
+            background: transparent;
+            color: #ffffff;
+            border: 2px solid;
+            border-radius: 25px; 
+}
+.btn-kitob:hover{
+            background: #ffffff;
+            transform: translateY(-2px);
+            color: #ffffff;
+            border: none;
+}
 
 .btn_btn_logout{
 color: white;
@@ -497,7 +509,7 @@ border-radius: 27px;
         <nav class="nav">
             <div class="nav-container">
                 <ul class="nav-menu">
-                    <li><a href="{% url 'books:list' %}">Kitoblar</a></li>
+                    <li><a href="{% url 'books:list' %}" class="btn-kitob">Kitoblar</a></li>
 
                         <li><a href="{% url 'users:profile' %}" class="btn-profile">Profile</a></li>
                    
