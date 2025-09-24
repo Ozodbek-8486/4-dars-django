@@ -1,0 +1,205 @@
+<html>
+    <head>
+        <title>{% block title %} Asosiy qism {% endblock %}</title>
+    </head>
+    <style>
+          .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-decoration: none;
+            color: white;
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 1rem;
+            cursor: pointer;
+        }
+
+        .btn {
+            padding: 0.7rem 1.5rem;
+            border: none;
+            border-radius: 25px;
+            cursor: none;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .btn-login {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+            cursor: pointer;
+        }
+
+        .btn-login:hover {
+            background: white;
+            color: #667eea;
+            cursor: pointer;
+        }
+
+        .btn-register {
+            background: transparent;
+            color: #ffffff;
+            border: 2px solid;
+            border-radius: 25px;
+            cursor: pointer;
+        }
+
+        .btn-register:hover {
+            background: #ffffff;
+            transform: translateY(-2px);
+            color: #667eea;
+            border: none;
+        }
+
+       
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            justify-content: center;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #ffffff;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-menu a:hover {
+            background: #ffffff;
+            color: rgb(29, 76, 231);
+        }
+
+        .btn-profile{
+            background: transparent;
+            color: #ffffff;
+            border: 2px solid;
+            border-radius: 25px;
+           
+}
+
+.btn-profile:hover{
+            background: #ffffff;
+            transform: translateY(-2px);
+            color: #667eea;
+            border: none;
+}
+
+.btn-kitob{
+            background: transparent;
+            color: #ffffff;
+            border: 2px solid;
+            border-radius: 25px; 
+}
+.btn-kitob:hover{
+            background: #ffffff;
+            transform: translateY(-2px);
+            color: #ffffff;
+            border: none;
+}
+
+.btn_btn_logout{
+color: white;
+text-decoration: none;
+border: 2px solid;
+border-color: white;
+padding: 13%;
+border-radius: 27px;
+}
+
+
+.btn_btn_logout:hover{
+    background-color: white;
+    color: black;
+    border: none;
+    cursor: pointer;
+    padding: 15%;
+}
+    </style>
+    <body>
+
+          {% if messages %}
+        {% for message in messages %}
+            <p>{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+
+<header class="header">
+    <div class="header-container">
+        <a href="/" class="logo">BlogSaytim</a>
+
+        <nav class="nav">
+            <div class="nav-container">
+                <ul class="nav-menu">
+                    <li><a href="{% url 'books:list' %}" class="btn-kitob">Kitoblar</a></li>
+
+                        <li><a href="{% url 'users:profile' %}" class="btn-profile">Profile</a></li>
+                   
+                </ul>
+            </div>
+        </nav>
+
+        <div class="auth-buttons">
+            {% if request.user.is_authenticated %}
+                <a href="{% url 'users:logout' %}" class="btn_btn_logout">Chiqish</a>
+            {% else %}
+                <a href="{% url 'users:login' %}" class="btn btn-login">Kirish</a>
+                <a href="{% url 'users:register' %}" class="btn btn-register">Ro'yxatdan o'tish</a>
+            {% endif %}
+        </div>
+    </div>
+</header>
+
+
+
+
+{% block content %} {% endblock %}
+
+
+
+
+
+
+<!-- Header saxifasi uchun link/ -->
+        {% include "header.html" %}
+
+
+<!-- Footer saxifasi uchun link/ -->
+        {% include "footer.html" %}
+
+
+    </body>
+</html>
