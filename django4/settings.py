@@ -42,7 +42,6 @@ ROOT_URLCONF = 'django4.urls'
 
 
 
-
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',

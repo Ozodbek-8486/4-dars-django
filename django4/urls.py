@@ -8,4 +8,5 @@ urlpatterns = [
     path('', TemplateView.as_view(template_name='landing_page.html'), name='landing'), 
     path('header/', TemplateView.as_view(), name='header'),
     path("books/",include("book.urls")),
+   
 ]
