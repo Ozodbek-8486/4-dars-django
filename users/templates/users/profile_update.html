@@ -1,11 +1,36 @@
 {% extends 'base.html' %}
 <h2>Profilni yangilash</h2>
 {% block content %}
-<form method="POST" enctype="multipart/form-data">
+<style>
+    
+    .formw{
+        border: 2px solid;
+        width: 450px;
+        height: 450px;
+        margin-top: 5%;
+        margin-left: 37%;
+        border-radius: 8px;
+    }
+    
+    .butons{
+        padding: 2%;
+        margin-left: 35%;
+        margin-top: 15%;
+        border-radius: 8px;
+    }
+    .butons:hover{
+        background-color: black;
+        color: white;
+    }
+</style>
+<form method="POST" enctype="multipart/form-data" class="formw">
+    <br>
     {% csrf_token %}
     {{ user_form.as_p }}
     {{ profile_form.as_p }}
-    <button type="submit">Yangilash</button>
+
+
+    <button type="submit" class="butons">Yangilash</button>
         {% endblock %}
 
 </form>

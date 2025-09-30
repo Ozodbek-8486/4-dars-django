@@ -39,16 +39,22 @@ body{
     color: black;
     text-decoration: none;
     margin-left: 40%;
-    margin-top: 12%;
+    margin-top: 25%;
     border: 2px solid;
     border-radius: 8px;
     padding: 3%;
+  
 }
 
 .orqaga:hover{
     background-color: black;
     color: white;
     border: none;
+}
+
+
+div{
+    margin-top: 35%;
 }
     </style>
 </head>
@@ -65,7 +71,7 @@ body{
     <p class="email">Email: {{ user.email }} </p>
 
 </body>
-<br><br><br><br>
+<div>
 <a href="{% url 'users:landing' %}" class="orqaga">Orqaga</a>
-
+</div>
 </html>
