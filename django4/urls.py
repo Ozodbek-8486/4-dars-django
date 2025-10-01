@@ -1,12 +1,14 @@
 from django.contrib import admin
 from django.urls import path, include
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView 
 
 urlpatterns = [
+    path('grappelli/', include('grappelli.urls')),  # oxirida slash
     path('admin/', admin.site.urls),
     path('users/', include('users.urls', namespace='users')),
     path('', TemplateView.as_view(template_name='landing_page.html'), name='landing'), 
     path('header/', TemplateView.as_view(), name='header'),
     path("books/",include("book.urls")),
-   
+
+
 ]

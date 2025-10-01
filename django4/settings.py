@@ -7,6 +7,10 @@ SECRET_KEY = 'django-insecure-ew3$3%89ey#z8^po4mzu$$6jqs8+ka@p=dk6wb80xh@v!pw2_@
 
 DEBUG = True
 
+APPEND_SLASH = True
+
+
+
 LOGOUT_REDIRECT_URL = '/'   
 
 
@@ -15,14 +19,17 @@ LOGIN_URL = "users:login"
 ALLOWED_HOSTS = ["*"]  
 
 INSTALLED_APPS = [
+
+    'grappelli',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
     'users',
     'book',
+    "django.contrib.staticfiles",
+ 
 ]
 
 MIDDLEWARE = [
@@ -96,6 +103,8 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
+
+
 
 
 
