@@ -1,5 +1,10 @@
 from django import forms
-from django.contrib.auth.models import User
+from django import forms
+from django.contrib.auth.models import AbstractUser
+from .models import Profile  
+from django.contrib.auth.models import AbstractUser
+from .models import CustomUser
+
 
 
 class UserCreateForm(forms.ModelForm):
@@ -12,7 +17,7 @@ class UserCreateForm(forms.ModelForm):
     )
 
     class Meta:
-        model = User
+        model = CustomUser
         fields = ("username", "first_name", "last_name", "email", "password")
         widgets = {
             "username": forms.TextInput(attrs={
@@ -64,20 +69,9 @@ class UserLoginForm(forms.Form):
 
 
 
-
-
-
-
-
-
-
-from django import forms
-from django.contrib.auth.models import User
-from .models import Profile  # Profil modeli ham kerak bo'ladi
-
 class UserUpdateForm(forms.ModelForm):
     class Meta:
-        model = User
+        model = CustomUser
         fields = ['username', 'email']
 
 class ProfileUpdateForm(forms.ModelForm):

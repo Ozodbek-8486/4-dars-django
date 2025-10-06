@@ -1,6 +1,14 @@
 from django.db import models
 from django.conf import settings   
 
+from django.contrib.auth.models import AbstractUser
+
+# Custom user
+class CustomUser(AbstractUser):
+    pass
+
+
+# Profile 
 
 class Profile(models.Model):
     user = models.OneToOneField(
@@ -15,3 +23,6 @@ class Profile(models.Model):
 
     def __str__(self):
         return self.user.username
+    
+
+

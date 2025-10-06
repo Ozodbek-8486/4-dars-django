@@ -11,10 +11,11 @@ APPEND_SLASH = True
 
 
 
-LOGOUT_REDIRECT_URL = '/'   
+AUTH_USER_MODEL = "users.CustomUser"
 
 
-LOGIN_URL = "users:login"
+
+
 
 ALLOWED_HOSTS = ["*"]  
 
@@ -106,7 +107,10 @@ USE_TZ = True
 
 
 
+LOGOUT_REDIRECT_URL = '/'   
 
+
+LOGIN_URL = "users:login"
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / "static"] 
