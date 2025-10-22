@@ -1,4 +1,4 @@
-
+ {% extends 'base.html' %}
 {% load static %}
 
 <!DOCTYPE html>
@@ -7,10 +7,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Kirish</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous"> -->
+
 </head>
 
 <body>
+   
+    {% block content %}
      <div class="veb">
          <a href="{% url 'landing' %}" class="orqaga">Orqaga</a>
      </div>
@@ -25,7 +28,7 @@
           
             <form action="{% url 'users:login' %}" method="post" novalidate>
                 {% csrf_token %}
-
+                {{form.as_p}}
                 <div class="form-group">
                     <label for="username">Username</label>
                     <input 
@@ -64,17 +67,12 @@
                 <button type="submit" class="submit-btn">Hisobga kirish</button>
             </form>
 
-            <div class="divider">
-                <span>yoki  ro'yxatdan o'ting</span>
-            </div>
+       
 
-         
+         {% endblock %}
 
-            <div class="login-link">
-                Hisobingiz bo'lmasa ro'yxatdan o'ting <a href="{% url 'users:register' %}">Ro'yxatdan o'tish</a>
-            </div>
-        </div>
-    </div>
-    <script src="{% static 'js/app.js' %}"></script>
+
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script> -->
+
 </body>
 </html>

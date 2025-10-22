@@ -188,3 +188,63 @@
 
 </body>
 </html> -->
+
+
+
+
+
+
+
+
+
+
+
+<!-- <h2>Profilni yangilash</h2>
+{% block content %}
+<style>
+    
+    .formw{
+        border: 2px solid;
+        width: 450px;
+        height: 450px;
+        margin-left: 37%;
+        border-radius: 8px;
+    }
+    
+    .butons{
+        padding: 2%;
+        margin-left: 35%;
+        margin-top: 15%;
+        border-radius: 8px;
+    }
+    .butons:hover{
+        background-color: black;
+        color: white;
+    }
+    .orqaga{
+        color: black;
+        text-decoration: none;
+        border: 2px solid;
+        padding: 1%;
+        border-radius: 8px;
+        margin-left: 5%;
+    }
+    .orqaga:hover{
+        background-color: black;
+        color: white;
+        border: none;
+    }
+    
+</style>
+<br><br><br>
+<a href="{% url 'landing' %}" class="orqaga">Orqaga</a>
+<form method="POST" enctype="multipart/form-data" class="formw">
+    <br>
+    {% csrf_token %}
+    {{ form.as_p }}
+  
+    <button type="submit" class="butons">Yangilash</button>
+        {% endblock %}
+
+</form> -->
+

@@ -8,6 +8,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
 from .forms import ProfileUpdateForm , UserUpdateForm
 from django.contrib.auth.decorators import login_required
+from .forms import ProfileUpdateForm, UserUpdateForm
 
 
 
@@ -49,40 +50,34 @@ class ProfileView(LoginRequiredMixin,View):
 
 
 
-class Logoutview(LoginRequiredMixin,View):
-    def get(self,request):
-        logout(request)
-        messages.info(request,"Tizimdan chiqildi!")
-        return redirect ("landing_page")
+# class Logoutview(LoginRequiredMixin,View):
+#     def get(self,request):
+#         logout(request)
+#         messages.info(request,"Tizimdan chiqildi!")
+#         return redirect ("landing_page")
     
 
+def home(request):
+    return render(request, 'landing_page')
 
+class ProfileUpdateView(LoginRequiredMixin, View):
+    def get(self,request):
+        user_update_form = UserUpdateForm(instance=request.user)
+        return render(request,'users/profile_update.html', {"form":user_update_form})
+    
+    def post(self,request):
+        user_update_form = UserUpdateForm(
+            instance=request.user,
+            data=request.POST,
+            files=request.FILES
+        )
+        if user_update_form.is_valid():
+            user_update_form.save()
+            messages.success(request,"Profile muvafaqiyatli yangilandi!")
 
-
-
-
-
-
-# @ login_required
-# def profile_update(request):
-#     if request.method == 'POST':
-#         user_form = UserUpdateForm(request.POST, isinstance=request.user)
-#         profile_form = ProfileUpdateForm(request.POST, request.FILES, isinstance=request.user.profile)
-#         if user_form.is_valid() and profile_form.is_valid():
-#             user_form.save()
-#             profile_form.save()
-#             return redirect('users:profile')
-#     else:
-#         user_form = UserUpdateForm(instance=request.user)
-#         profile_form = ProfileUpdateForm(instance=request.user.profile)
-
-#     context = {
-#         'user_form': user_form,
-#         'profile_update': profile_update
-#     }
-#     return redirect(request, 'user/profile_update.html' , context)
-
-
+            return redirect("users:profile")
+        
+        return render(request,'users/profile_update.html', {"form":user_update_form})
 
 
 @login_required
@@ -93,7 +88,7 @@ def profile_update(request):
         if user_form.is_valid() and profile_form.is_valid():
             user_form.save()
             profile_form.save()
-            return redirect('users:profile')  # endi to'g'ri URL name ishlatiladi
+            return redirect('users:profile')  
     else:
         user_form = UserUpdateForm(instance=request.user)
         profile_form = ProfileUpdateForm(instance=request.user.profile)
