@@ -21,7 +21,7 @@ ALLOWED_HOSTS = ["*"]
 
 INSTALLED_APPS = [
 
-    'grappelli',
+    "jazzmin",
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -124,3 +124,26 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/users/login/'
+
+
+JAZZMIN_SETTINGS = {
+    "site_title": "Books market admin page",
+    "site_header": "Admin saxifasi",
+    "site_brand": "Book app",
+    "welcome_sign": "Assalom alekum, admin...",
+    "show_sidebar": True,
+    "navigation_expanded": True,
+    "custom_css": "admin/css/hacer.css",
+    "custom_js": "admin/js/main.js",
+    "icons": {
+        "book.Book": "fas fa-book",
+    },
+}
+
+JAZZMIN_UI_TWEAKS = {
+    "theme": "cyborg",          # baza qoramtir
+    "dark_mode_theme": "cyborg",
+    "navbar": "navbar-dark",
+    "sidebar": "sidebar-dark-primary",
+    "brand_colour": "navbar-dark",
+}

@@ -6,5 +6,3 @@ def landing_page(request):
 
 
 
-def header(request):
-     return render(request, 'header.html')
