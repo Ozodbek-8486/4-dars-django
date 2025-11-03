@@ -14,6 +14,7 @@ urlpatterns = [
     path("books/", include("book.urls"),name="books"),
     path('offline/', views.offline_page, name='offline'),
     path('heartbeat/', views.heartbeat, name='heartbeat'),
+  
 
 ]
 
