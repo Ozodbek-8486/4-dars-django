@@ -1,16 +1,18 @@
-<!DOCTYPE html>
+{% load static %}
+
 <html lang="uz">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Bosh sahifa{% endblock %}</title>
 
-    <!-- Bootstrap CSS -->
-    <link 
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" 
-      rel="stylesheet"
-      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
-      crossorigin="anonymous">
+    <!-- Tailwand CSS uchun link -->
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+
+    <!-- Bootstrap CSS uchun link -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"crossorigin="anonymous">
+
+
 
     <style>
       body {
@@ -78,6 +80,9 @@
     <nav class="navbar navbar-expand-lg">
       <div class="container-fluid">
         <a class="navbar-brand" href="{% url 'landing' %}">📚 Kitoblar olami</a>
+
+
+        
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" 
                 aria-expanded="false" aria-label="Toggle navigation">
@@ -99,6 +104,8 @@
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 👤 Hisob
               </a>
+
+
               <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="{% url 'users:profile' %}">Shaxsiy hisob</a></li>
 
@@ -117,16 +124,13 @@
             </li>
           </ul>
 
-          <!-- Search -->
-          <!-- <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Kitob izlash..." aria-label="Search">
-            <button class="btn btn-warning" type="submit">Izlash</button>
-          </form> -->
+         
         </div>
       </div>
     </nav>
 
-    <!-- Flash messages -->
+
+    
     <div class="container">
       {% if messages %}
         {% for message in messages %}
@@ -137,7 +141,7 @@
       {% endif %}
     </div>
 
-    <!-- Page content -->
+
     <div class="container content-wrapper">
       {% block content %}{% endblock %}
     </div>
@@ -145,10 +149,61 @@
 
 
     <!-- Bootstrap JS -->
-    <script 
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-      crossorigin="anonymous">
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"crossorigin="anonymous"></script>
+
+
+
+
+
   </body>
+  <!-- Service Worker ro'yxatdan o'tishi -->
+<script>
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register("{% static 'js/service-worker.js' %}")
+        .then(reg => console.log('SW registered'))
+        .catch(err => console.warn('SW registration failed:', err));
+    });
+}
+</script>
+
+<!-- Heartbeat: internet uzilganda offline sahifaga yo'naltirish -->
+<script>
+(function() {
+    const intervalMs = 10000; // 10 soniya
+    const heartbeatUrl = "{% url 'heartbeat' %}";
+    let offlineShown = false;
+
+    async function checkHeartbeat() {
+        try {
+            const res = await fetch(heartbeatUrl, { method:'GET', cache:'no-store', credentials:'same-origin' });
+            if (!res.ok) showOffline();
+            else if (offlineShown && window.location.pathname === '/offline/') window.location.replace('/');
+        } catch(err) {
+            showOffline();
+        }
+    }
+
+    function showOffline() {
+        if (offlineShown) return;
+        offlineShown = true;
+        window.location.replace("{% url 'offline' %}");
+    }
+
+    window.addEventListener('load', () => {
+        checkHeartbeat();
+        setInterval(checkHeartbeat, intervalMs);
+    });
+
+    window.addEventListener('offline', showOffline);
+    window.addEventListener('online', () => {
+    if (window.location.pathname === '/offline/') {
+        window.location.replace('/');
+    }
+});
+
+
+})();
+</script>
+
 </html>

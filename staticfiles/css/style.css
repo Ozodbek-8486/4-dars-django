@@ -216,3 +216,21 @@ input::placeholder {
     font-size: 24px;
   }
 }
+
+
+
+.orqaga{
+  color: white;
+  text-decoration: none;
+  border: 2px solid;
+  padding: 10%;
+  border-radius: 8px;
+  border-color:#1a4d2e ;
+  background-color: #1a4d2e ;
+  color: white;
+
+}
+.veb{
+  margin-top: -30%;
+  margin-right: 2%;
+}

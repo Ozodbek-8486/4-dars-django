@@ -30,8 +30,14 @@ INSTALLED_APPS = [
     'users',
     'book',
     "django.contrib.staticfiles",
+    
+    
+
  
 ]
+
+
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -88,6 +94,18 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'myproject',      # Bazaning nomi
+#         'USER': 'ozodbek',        # PostgreSQL foydalanuvchisi
+#         'PASSWORD': 'ozodbek', # Parolingiz
+#         'HOST': 'localhost',      # Lokal ulanish
+#         'PORT': '5432',           # PostgreSQL porti (standart)
+#     }
+# }
+
 
 
 AUTH_PASSWORD_VALIDATORS = [

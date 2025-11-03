@@ -4,45 +4,115 @@
 
 
  {% block content %}
+
+ <!-- <link rel="stylesheet" href="https://rsms.me/inter/inter.css" /> -->
  
  <style>
     .bir{
         text-align: center;
         
     }
- </style>
+    .kitob{
+      color: black;
+      text-decoration:none ;
+      margin-left: 45%;
+      margin-top: 2%;
+      border: 2px solid;
+      padding: 1%;
+      border-radius: 8px;
+
+    }
+    h5{
+      text-align: center;
+    }
+.cssbuttons-io-button {
+  background-image: linear-gradient(19deg, #21D4FD 0%, #B721FF 100%);
+  color: white;
+  font-family: inherit;
+  padding: 0.35em;
+  padding-left: 1.2em;
+  font-size: 17px;
+  border-radius: 10em;
+  letter-spacing: 0.05em;
+  display: inline-flex; /* <a> uchun inline-flex ishlatamiz */
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+  height: 2.8em;
+  padding-right: 3.3em;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-weight: 500;
+  box-shadow: 0 0 1.6em rgba(183, 33, 255,0.3), 0 0 1.6em hsla(191, 98%, 56%, 0.3);
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+  text-decoration: none; /* pastki chiziqni olib tashlaymiz */
+  border: none; /* a uchun ham xavfsiz */
+  margin-left: 41%;
+}
+
+.cssbuttons-io-button .icon {
+  background: white;
+  margin-left: 1em;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.2em;
+  width: 2.2em;
+  border-radius: 10em;
+  right: 0.3em;
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.cssbuttons-io-button:hover .icon {
+  width: calc(100% - 0.6em);
+}
+
+.cssbuttons-io-button .icon svg {
+  width: 1.1em;
+  transition: transform 0.3s;
+  color: #B721FF;
+}
+
+.cssbuttons-io-button:hover .icon svg {
+  transform: translateX(0.1em);
+}
+
+.cssbuttons-io-button:active .icon {
+  transform: scale(0.9);
+}
+
+
+ </style> 
 <body>
   
+     <main>
+        {% if user.is_authenticated %}
+            <h2 style="text-align: center;">Assalomu Aleykum</h2>
+            <ul>
+                {% for book in books %}
+                    <li><strong>{{ book.title }}</strong> — {{ book.author }}</li>
+                {% empty %}
+                  <h5>Endi bemalol kitoblar xardi qilishingiz mumkin</h5>
+                  <br><br>
+                    
+<a href="{% url 'books:book_list' %}" class="cssbuttons-io-button">
+ Kitobar
+  <div class="icon">
+    <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="none"></path>
+      <path d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z" fill="currentColor"></path>
+    </svg>
+  </div>
+</a>
 
-  <div id="carouselExampleIndicators" class="carousel slide" style="width: 1000px;margin-left: 23%;border-radius: 5%;">
-  <div class="carousel-indicators">
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-  </div>
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="https://i.sstatic.net/BM0l7.png" class="d-block w-100" alt="" style="border-radius: 10px;">
-    </div>
-    <div class="carousel-item">
-      <img src="https://i.sstatic.net/BM0l7.png" class="d-block w-100" alt="" style="border-radius: 10px;">
-    </div>
-    <div class="carousel-item">
-      <img src="https://i.sstatic.net/BM0l7.png" class="d-block w-100" alt="" style="border-radius: 10px;">
-    </div>
-  </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
-</div>
-  
+                {% endfor %}
+            </ul>
+        {% else %}
+            <h2 style="color:red;">Avval saytdan ro'yxatdan o'ting!</h2>
+        {% endif %}
+    </main>
 
 </body>
-
 
 {% endblock %}

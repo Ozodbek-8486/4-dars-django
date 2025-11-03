@@ -1,0 +1,140 @@
+:root {
+  --edex-bg: #000;
+  --edex-neon: #00fff2;
+  --edex-dark: #001821;
+  --edex-border: #00fff250;
+}
+
+html, body {
+  background: radial-gradient(circle at 25% 25%, var(--edex-dark), var(--edex-bg)) !important;
+  color: var(--edex-neon) !important;
+  font-family: "Courier New", monospace !important;
+  letter-spacing: 0.8px !important;
+}
+
+/* Navbar va header */
+.navbar, .navbar-brand, .main-header {
+  background: linear-gradient(90deg, #001821, #000) !important;
+  color: var(--edex-neon) !important;
+  text-shadow: 0 0 10px var(--edex-neon);
+  border-bottom: 1px solid var(--edex-border);
+}
+
+/* Sidebar */
+.main-sidebar, .sidebar {
+  background: linear-gradient(180deg, #000, #001a1d) !important;
+  border-right: 1px solid var(--edex-border);
+  color: var(--edex-neon) !important;
+}
+
+/* Cards va boxlar */
+.card, .content, .box, .card-body {
+  background: rgba(0, 0, 0, 0.7) !important;
+  border: 1px solid var(--edex-border) !important;
+  box-shadow: 0 0 15px #00fff240 inset;
+  color: var(--edex-neon) !important;
+  border-radius: 6px;
+}
+
+/* Headings */
+h1, h2, h3, h4, .card-header, .model-title {
+  color: var(--edex-neon) !important;
+  text-shadow: 0 0 10px #00eaff;
+}
+
+/* Links */
+a, .nav-link, .dropdown-item {
+  color: var(--edex-neon) !important;
+  transition: all 0.3s ease;
+}
+a:hover {
+  color: #aaffff !important;
+  text-shadow: 0 0 8px #00fff2;
+}
+
+/* Tablelar */
+.table {
+  color: var(--edex-neon) !important;
+  border-color: var(--edex-border) !important;
+}
+.table thead th {
+  background: rgba(0, 255, 255, 0.08);
+  border-bottom: 1px solid var(--edex-border);
+}
+.table tbody tr:hover {
+  background: rgba(0, 255, 255, 0.05);
+  transition: 0.2s;
+}
+
+/* Inputs */
+.form-control {
+  background: rgba(0, 0, 0, 0.6) !important;
+  border: 1px solid var(--edex-border) !important;
+  color: var(--edex-neon) !important;
+  border-radius: 4px;
+  box-shadow: 0 0 6px rgba(0, 255, 255, 0.1) inset;
+}
+.form-control:focus {
+  box-shadow: 0 0 12px rgba(0, 255, 255, 0.4);
+  border-color: #00fff2 !important;
+}
+
+/* Buttons */
+.btn {
+  background: linear-gradient(90deg, #003a40, #001821);
+  border: 1px solid var(--edex-border);
+  color: var(--edex-neon) !important;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: 0.2s;
+}
+.btn:hover {
+  background: #002d2d;
+  box-shadow: 0 0 15px #00fff2;
+}
+
+/* Screen glow layer */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: repeating-linear-gradient(transparent 0, rgba(0,255,255,0.03) 1px, transparent 2px);
+  pointer-events: none;
+  mix-blend-mode: overlay;
+  animation: scan 6s linear infinite;
+}
+
+@keyframes scan {
+  0% { opacity: 0.4; transform: translateY(0); }
+  50% { opacity: 0.6; transform: translateY(10px); }
+  100% { opacity: 0.4; transform: translateY(0); }
+}
+
+
+.edex-glitch {
+  position: relative;
+  color: #00fff2;
+  text-shadow: 0 0 8px #00fff2, 0 0 16px #00eaff, 0 0 24px #00ffff;
+  font-family: "Courier New", monospace;
+  display: inline-block;
+  border-right: 2px solid #00fff2;
+  white-space: nowrap;
+  animation: blinkCursor 0.8s infinite;
+}
+
+@keyframes blinkCursor {
+  0%, 100% { border-color: transparent; }
+  50% { border-color: #00fff2; }
+}
+
+.glitch-active {
+  animation: glitch 1.5s infinite;
+}
+
+@keyframes glitch {
+  0% { text-shadow: 2px 2px #00ffb3, -2px -2px #00fff2; }
+  25% { text-shadow: -2px 2px #00eaff, 2px -2px #00ffb3; }
+  50% { text-shadow: 3px -3px #00fff2, -3px 3px #00ffb3; }
+  75% { text-shadow: -1px 1px #00ffb3, 1px -1px #00fff2; }
+  100% { text-shadow: 2px 2px #00fff2, -2px -2px #00ffb3; }
+}
