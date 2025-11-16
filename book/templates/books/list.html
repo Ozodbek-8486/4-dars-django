@@ -1,297 +1,159 @@
-
-{% extends "base.html" %}
+ {% extends "base.html" %}
 {% load static %}
 
-{% block title %}Kitoblar ro‘yxati{% endblock %}
 
 {% block content %}
 
-    <script src="https://cdn.tailwindcss.com"></script>
-
 <style>
+  body{
+    background-color: white;
+  }
+
+    form {
+      display: flex;
+      align-items: center;
+      padding: 10px;
+      border-radius: 10px;
+      max-width: 500px;
+      width: 90%;
+    }
 
 
-.navbar-brand{
-  background-color: #007bff;
-  border-color: #000;
-  margin-left: 5%;
-}
-  /* From Uiverse.io by reshades */ 
-.a {
-  background-color: #ffffff00;
-  color: #fff;
-  width: 8.5em;
-  height: 2.9em;
-  border: #3654ff 0.2em solid;
-  border-radius: 11px;
-  text-align: right;
-  transition: all 0.6s ease;
-}
-
-.a:hover {
-  background-color: #3654ff;
-  cursor: pointer;
-}
-
-.a svg {
-  width: 1.6em;
-  margin: -0.2em 0.8em 1em;
-  position: absolute;
-  display: flex;
-  transition: all 0.6s ease;
-}
-
-.a:hover svg {
-  transform: translateX(5px);
-}
-
-.text {
-  margin: 0 1.5em
-}
-/* From Uiverse.io by LightAndy1 */ 
-.group {
-  display: flex;
-  line-height: 28px;
-  align-items: center;
-  position: relative;
-  max-width: 190px;
-}
-
-.input {
-  font-family: "Montserrat", sans-serif;
-  width: 100%;
-  height: 45px;
-  padding-left: 2.5rem;
-  box-shadow: 0 0 0 1.5px #2b2c37, 0 0 25px -17px #000;
-  border: 0;
-  border-radius: 12px;
-  background-color: #16171d;
-  outline: none;
-  color: #bdbecb;
-  transition: all 0.25s cubic-bezier(0.19, 1, 0.22, 1);
-  cursor: text;
-  z-index: 0;
-}
-
-.input::placeholder {
-  color: #bdbecb;
-}
-
-.input:hover {
-  box-shadow: 0 0 0 2.5px #2f303d, 0px 0px 25px -15px #000;
-}
-
-.input:active {
-  transform: scale(0.95);
-}
-
-.input:focus {
-  box-shadow: 0 0 0 2.5px #2f303d;
-}
-
-.search-icon {
-  position: absolute;
-  left: 1rem;
-  fill: #bdbecb;
-  width: 1rem;
-  height: 1rem;
-  pointer-events: none;
-  z-index: 1;
-}
-/* From Uiverse.io by vinodjangid07 */ 
+    .input-container {
+      position: relative;
+      flex: 1;
+    }
 
 
+    .input-container svg.search-icon {
+      position: absolute;
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 18px;
+      height: 18px;
+      color: #9ca3af;
+    }
 
 
+    .input-container svg.mic-icon {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 16px;
+      height: 16px;
+      color: #9ca3af;
+      cursor: pointer;
+      transition: color 0.2s ease;
+    }
 
-.card-button {
-  width: 10%;
-  height: 35px;
-  border-radius: 10px;
-  border: none;
-  cursor: pointer;
-  font-weight: 600;
-}
+    .input-container svg.mic-icon:hover {
+      color: #fff;
+    }
 
-.tozalash{
-background-color: rgb(219, 42, 42);
-}
-.primary {
-  background-color: rgb(255, 114, 109);
-  color: white;
-}
-.primary:hover {
-  background-color: rgb(255, 73, 66);
-}
-.secondary {
-  background-color: #ddd;
-}
-.secondary:hover {
-  background-color: rgb(197, 197, 197);
-}
-.exit-button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: none;
-  background-color: transparent;
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  cursor: pointer;
-}
-.exit-button:hover svg {
-  fill: black;
-}
-.exit-button svg {
-  fill: rgb(175, 175, 175);
-}
+  
+    input {
+      width: 100%;
+      padding: 10px 35px 10px 35px;
+      border: 1px solid #4b5563;
+      border-radius: 8px;
+      background: #111827;
+      color: #fff;
+      font-size: 14px;
+      outline: none;
+      transition: border 0.3s ease;
+    }
 
-/* From Uiverse.io by ozgeozkaraa01 */ 
-a {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.3s linear;
-  border-radius: 10px;
-  border: 1px solid #F2BED1;
-  padding: 10px 20px;
-  background-color: #000;
-  color: white;
-}
+    input:focus {
+      border-color: #3b82f6;
+    }
 
-a > svg {
-  margin-left: 5px;
-  transition: all 0.4s ease-in;
-}
+   
+    button {
+      margin-left: 10px;
+      padding: 10px 15px;
+      background-color: #2563eb;
+      border: none;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      font-size: 14px;
+      transition: background 0.3s ease;
+    }
 
-a:hover > svg {
-  font-size: 1.2em;
-  transform: translateX(6px);
-}
+    button:hover {
+      background-color: #1d4ed8;
+    }
 
-a:hover {
-  box-shadow: 10px 10px 40px #d1d1d1;
-  transform: translateY(-5px);
-}
+    button svg {
+      width: 16px;
+      height: 16px;
+      margin-right: 6px;
+      color: white;
+    }
 
-.keyingi{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.3s linear;
-  border-radius: 10px;
-  border: 1px solid #F2BED1;
-  padding: 10px 20px;
-  background-color: #000;
-  color: white;
-}
-
-
-.saxifa{
-
-}
-
-.oldinga{
-  height: 46px;
-}
+    .clear{
+      margin-left: 3%;
+      text-decoration: none;
+      background-color: rgb(230, 20, 20);
+      color: white;
+      padding: 1.5%;
+      border-radius: 8px;
+    }
 
 </style>
 
 
 
+  <form>
+    <div class="input-container">
+    
+    <svg class="search-icon" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path
+    d="M19 19l-4.35-4.35m2.35-6.65a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z"
+    stroke-width="2"
+    stroke-linejoin="round"
+    stroke-linecap="round"
+    stroke="currentColor"
+  ></path>
+</svg>
 
 
+    
+      <input type="search" placeholder="Search..." name="search" value="{{ request.GET.search }}" >
 
-<form class="flex items-center max-w-lg mx-auto">
-  <label class="sr-only" for="voice-search">Search</label>
-  <div class="relative w-full">
-    <div
-      class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none"
-    >
-      <svg
-        viewBox="0 0 21 21"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        aria-hidden="true"
-        class="w-4 h-4 text-gray-500 dark:text-gray-400"
-      >
-        <path
-          d="M11.15 5.6h.01m3.337 1.913h.01m-6.979 0h.01M5.541 11h.01M15 15h2.706a1.957 1.957 0 0 0 1.883-1.325A9 9 0 1 0 2.043 11.89 9.1 9.1 0 0 0 7.2 19.1a8.62 8.62 0 0 0 3.769.9A2.013 2.013 0 0 0 13 18v-.857A2.034 2.034 0 0 1 15 15Z"
-          stroke-width="2"
-          stroke-linejoin="round"
-          stroke-linecap="round"
-          stroke="currentColor"
-        ></path>
-      </svg>
     </div>
-    <input
-      required=""
-      placeholder="Search..."
-      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-      id="voice-search"
-      type="text"
-      name="search"
-      value="{{ request.GET.search }}"
-    />
-    <button
-      class="absolute inset-y-0 end-0 flex items-center pe-3"
-      type="button"
-    >
-      <svg
-        viewBox="0 0 16 20"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        aria-hidden="true"
-        class="w-4 h-4 text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
-      >
-   
+
+  
+    <button type="submit">
+      <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
+              stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor"></path>
       </svg>
+      Search
     </button>
-  </div>
-  <button
-    class="inline-flex items-center py-2.5 px-3 ms-2 text-sm font-medium text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-    type="submit"
-  >
-    <svg
-      viewBox="0 0 20 20"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      aria-hidden="true"
-      class="w-4 h-4 me-2"
-    >
-      <path
-        d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
-        stroke-width="2"
-        stroke-linejoin="round"
-        stroke-linecap="round"
-        stroke="currentColor"
-      ></path></svg>Search
-  </button>
-</form>
+    {% if request.GET.search %}
+        <a href="{% url 'books:book_list' %}"  class="clear">  
+          <svg class="search-icon" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 20px;">
+    <path
+      d="M5 5l11 11M16 5l-11 11"
+      stroke-width="2"
+      stroke-linejoin="round"
+      stroke-linecap="round"
+      stroke="currentColor"
+    ></path>
+  </svg> Tozalash</a>
 
-
-      <!-- <input type="text" placeholder="Izlash..." name="search" value="{{ request.GET.search }}" class="form-control me-2"> -->
-      <!-- <button class="btn btn-success me-2" >Izlash</button> -->
-
-
-
-
-      {% if request.GET.search %}
-       
-        <!-- <div class="card"> -->
- 
-  <!-- <div class="card-button-wrapper"> -->
-    <button class="card-button primary"><a href="{% url 'books:book_list' %}" class="tozalash">Tozalash</a></button>
-  <!-- </div> -->
-
-<!-- </div> -->
+        
       {% endif %}
-    </form>
-  </div>
-</div>
+
+  </form>
+
+     
+
   <ul>
     {% for book in books %}
         <li>{{ book.title }}</li>
@@ -318,9 +180,6 @@ a:hover {
             <p class="text-muted mb-1"><strong>Muallif:</strong> {{ book.author }}</p>
             <p class="card-text mt-2 flex-grow-1">{{ book.description|truncatewords:20 }}</p>
             <a href="{% url 'books:book_detail' book.id %}" class="btn btn-primary w-100 mt-auto">Batafsil →</a>
-
-
-
           </div>
         </div>
       </div>
@@ -331,65 +190,26 @@ a:hover {
     {% endfor %}
   </div>
 
-  <!-- Pagination -->
   <div class="d-flex justify-content-center align-items-center mt-4">
     <nav>
       <ul class="pagination">
         {% if page_obj.has_previous %}
           <li class="page-item">
-            <!-- <a class="page-link" href="?page={{ page_obj.previous_page_number }}">⬅ Oldingi</a> -->
-
-                <a  class="oldinga" href="?page={{ page_obj.previous_page_number }}">
-<svg width="15" height="15" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"style="transform: rotate(180deg);">
-    <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
-  <span>Oldingi</span>
-
-</a>
-
+            <a class="page-link" href="?page={{ page_obj.previous_page_number }}">⬅ Oldingi</a>
           </li>
         {% else %}
-          <!-- <li class="page-item disabled"><span class="page-link">⬅ Oldingi</span></li> -->
-    <a  class="oldinga">
-<svg width="15" height="15" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"style="transform: rotate(180deg);">
-    <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
-  <span>Keyingi</span>
-
-</a>
-
+          <li class="page-item disabled"><span class="page-link">⬅ Oldingi</span></li>
         {% endif %}
 
         <li class="page-item disabled mx-2">
-          <!-- <span class="page-link">
+          <span class="page-link">
             Sahifa {{ page_obj.number }} / {{ page_obj.paginator.num_pages }}
-
-
-          </span> -->
-<div class="keyingi">
-  <span  class="saifa">Saxifa {{ page_obj.number }} / {{ page_obj.paginator.num_pages }}</span>
-
-</div>
+          </span>
         </li>
 
         {% if page_obj.has_next %}
           <li class="page-item">
-            <!-- <a class="page-link" href="?page={{ page_obj.next_page_number }}">Keyingi ➡</a> -->
-
-<a href="?page={{ page_obj.next_page_number }}">
-  
-  <span>Keyingi</span>
-  <svg width="15" height="15" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" stroke-linejoin="round" stroke-linecap="round"></path>
-</svg>
-</a>
-
-
-
-
-
-<br>
-
+            <a class="page-link" href="?page={{ page_obj.next_page_number }}">Keyingi ➡</a>
           </li>
         {% else %}
           <li class="page-item disabled"><span class="page-link">Keyingi ➡</span></li>
@@ -398,4 +218,6 @@ a:hover {
     </nav>
   </div>
 </div>
+
+
 {% endblock %}

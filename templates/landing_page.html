@@ -1,30 +1,207 @@
 {% extends "base.html" %}
+{% block body_class %}main-page{% endblock %}
+{% load static %}
+{% block content %}
+
+<!doctype html>
+<html lang="uz">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI-Powered Team Member</title>
+    <style>
+    
+
+  
+  
+      canvas {
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+      }
+body.main-page {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  background: linear-gradient(180deg, #0a0b1e 0%, #14152e 50%, #1a1b3a 100%);
+  color: rgb(255, 255, 255);
+  overflow-x: hidden;
+  min-height: 100vh;
+  position: relative;
+}
+
+      .star {
+        position: fixed;
+        border-radius: 50%;
+        pointer-events: none;
+      }
+
+      .star.twinkle {
+        animation: twinkle 3s infinite;
+      }
+
+      @keyframes twinkle {
+        0%, 100% {
+          opacity: 0.3;
+        }
+        50% {
+          opacity: 0.8;
+        }
+      }
+
+      @media (max-width: 1024px) {
+        .container {
+          grid-template-columns: 1fr;
+          gap: 32px;
+        }
+      }
+
+      .left-section {
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+      }
+
+      .user-badge {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-size: 14px;
+        color: #bfdbfe;
+      }
+
+      .avatar-group {
+        display: flex;
+        gap: -12px;
+        margin-right: 8px;
+      }
+
+      .avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        border: 3px solid #0a0b1e;
+        background: linear-gradient(135deg, var(--gradient-from), var(--gradient-to));
+      }
+
+      .avatar:nth-child(1) {
+        --gradient-from: #c084fc;
+        --gradient-to: #ec4899;
+        z-index: 3;
+      }
+
+      .avatar:nth-child(2) {
+        --gradient-from: #60a5fa;
+        --gradient-to: #06b6d4;
+        margin-left: -12px;
+        z-index: 2;
+      }
+
+      .avatar:nth-child(3) {
+        --gradient-from: #4ade80;
+        --gradient-to: #10b981;
+        margin-left: -12px;
+        z-index: 1;
+      }
+
+      h1 {
+        font-size: 64px;
+        font-weight: 700;
+        line-height: 1.2;
+        letter-spacing: -1px;
+        margin-top: 2%;
+      }
+
+      @media (max-width: 768px) {
+        h1 {
+          font-size: 48px;
+        }
+      }
+
+      .description {
+        font-size: 20px;
+        color: #d1d5db;
+        max-width: 500px;
+        line-height: 1.6;
+        margin-top: 2%;
+      }
+
+      a-group {
+        display: flex;
+        gap: 16px;
+        flex-wrap: wrap;
+      }
+
+      a {
+        padding: 16px 32px;
+        border-radius: 9999px;
+        font-size: 16px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border: none;
+        text-decoration: none;
+      }
+
+      .btn-primary {
+        background: linear-gradient(135deg, #6366f1 0%, #9333ea 100%);
+        color: white;
+        box-shadow: 0 10px 30px rgba(147, 51, 234, 0.3);
+      }
+
+      .btn-primary:hover {
+        transform: scale(1.05);
+        box-shadow: 0 15px 40px rgba(147, 51, 234, 0.4);
+      }
+
+      .btn-secondary {
+        border: 2px solid #4b5563;
+        background: transparent;
+        color: white;
+      }
+
+      .btn-secondary:hover {
+        border-color: #9ca3af;
+        background: rgba(255, 255, 255, 0.05);
+      }
+
+      .right-section {
+        position: relative;
+      }
+
+   
+
+  
+
+.success-message {
+  position: fixed;
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+  color: white;
+  padding: 16px 32px;
+  border-radius: 9999px;
+  font-size: 18px;
+  font-weight: 600;
+  box-shadow: 0 10px 25px rgba(22, 163, 74, 0.4);
+  opacity: 0;
+  animation: fadeInOut 4s ease forwards;
+  z-index: 9999;
+}
+
+@keyframes fadeInOut {
+  0% { opacity: 0; transform: translate(-50%, -20px); }
+  10%, 90% { opacity: 1; transform: translate(-50%, 0); }
+  100% { opacity: 0; transform: translate(-50%, -20px); }
+}
 
 
 
-
- {% block content %}
-
- <!-- <link rel="stylesheet" href="https://rsms.me/inter/inter.css" /> -->
- 
- <style>
-    .bir{
-        text-align: center;
-        
-    }
-    .kitob{
-      color: black;
-      text-decoration:none ;
-      margin-left: 45%;
-      margin-top: 2%;
-      border: 2px solid;
-      padding: 1%;
-      border-radius: 8px;
-
-    }
-    h5{
-      text-align: center;
-    }
+/* Button uchun qilingan CSS */
+/* From Uiverse.io by gharsh11032000 */ 
 .cssbuttons-io-button {
   background-image: linear-gradient(19deg, #21D4FD 0%, #B721FF 100%);
   color: white;
@@ -33,9 +210,14 @@
   padding-left: 1.2em;
   font-size: 17px;
   border-radius: 10em;
+  border: none;
   letter-spacing: 0.05em;
-  display: inline-flex; /* <a> uchun inline-flex ishlatamiz */
+  display: flex;
   align-items: center;
+  width: 157px;
+  margin-left: 5%;
+  margin-top: 3%;
+  padding: 2%;
   overflow: hidden;
   position: relative;
   height: 2.8em;
@@ -43,11 +225,8 @@
   cursor: pointer;
   text-transform: uppercase;
   font-weight: 500;
-  box-shadow: 0 0 1.6em rgba(183, 33, 255,0.3), 0 0 1.6em hsla(191, 98%, 56%, 0.3);
+  box-shadow: 0 0 1.6em rgba(183, 33, 255,0.3),0 0 1.6em hsla(191, 98%, 56%, 0.3);
   transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
-  text-decoration: none; /* pastki chiziqni olib tashlaymiz */
-  border: none; /* a uchun ham xavfsiz */
-  margin-left: 41%;
 }
 
 .cssbuttons-io-button .icon {
@@ -82,130 +261,153 @@
   transform: scale(0.9);
 }
 
+    </style>
+  </head>
 
-/* From Uiverse.io by satyamchaudharydev */ 
-button {
-  --primary-color: #645bff;
-  --secondary-color: #fff;
-  --hover-color: #111;
-  --arrow-width: 10px;
-  --arrow-stroke: 2px;
-  box-sizing: border-box;
-  border: 0;
-  border-radius: 20px;
-  color: var(--secondary-color);
-  padding: 1em 1.8em;
-  background: var(--primary-color);
-  display: flex;
-  transition: 0.2s background;
-  align-items: center;
-  gap: 0.6em;
-  font-weight: bold;
-}
+  <body id="main-page">
+    <div class="star"></div>
+    <div class="bottom-glow"></div>
 
-button .arrow-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+    <div>
+      <div class="user-badge">
+        <div class="avatar-group">
+          <div class="avatar"></div>
+          <div class="avatar"></div>
+          <div class="avatar"></div>
+        </div>
+        <span>2M Foydalanuvchilar </span>
+      </div>
 
-button .arrow {
-  margin-top: 1px;
-  width: var(--arrow-width);
-  background: var(--primary-color);
-  height: var(--arrow-stroke);
-  position: relative;
-  transition: 0.2s;
-}
+      <h1>Kitob do'koniga<br>Xush kelibsiz<br>Hurmatli mijoz!</h1>
 
-button .arrow::before {
-  content: "";
-  box-sizing: border-box;
-  position: absolute;
-  border: solid var(--secondary-color);
-  border-width: 0 var(--arrow-stroke) var(--arrow-stroke) 0;
-  display: inline-block;
-  top: -3px;
-  right: 3px;
-  transition: 0.2s;
-  padding: 3px;
-  transform: rotate(-45deg);
-}
+      <p class="description">
+        Bizning onlayn kitob veb saytimizdan o'zingizga mos va yoqgan kitoblarni o'ishingiz mumkin.
+      </p>
 
-/* button:hover {
-  background-color: var(--hover-color);
-} */
+      <br><br>
 
-button:hover .arrow {
-  background: var(--secondary-color);
-}
-
-button:hover .arrow:before {
-  right: 0;
-}
+      <!-- From Uiverse.io by gharsh11032000 --> 
 
 
-.register{
-  color: white;
-  text-decoration: none;
-}
+      {% if user.is_authenticated %}
+<!-- ✅ Bu matn faqat login foydalanuvchiga chiqadi -->
+<div id="login-success" class="success-message">
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+	<path fill="currentColor" d="m9.55 18l-5.7-5.7l1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z" />
+</svg> Siz muvaffaqiyatli saytga kirdingiz, {{ user.username }}!
+</div>
 
-.login{
-  color: white;
-  text-decoration: none;
-}
- </style> 
-<body>
-  
-     <main>
-        {% if user.is_authenticated %}
-            <h2 style="text-align: center;">Assalomu Aleykum</h2>
-            <ul>
-                {% for book in books %}
-                    <li><strong>{{ book.title }}</strong> — {{ book.author }}</li>
-                {% empty %}
-                  <h5>Endi bemalol kitoblar xardi qilishingiz mumkin</h5>
-                  <br><br>
-                    
-<a href="{% url 'books:book_list' %}" class="cssbuttons-io-button">
- Kitobar
+<a class="cssbuttons-io-button" href="{% url 'books:book_list' %}" > Kitoblar
   <div class="icon">
-    <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-      <path d="M0 0h24v24H0z" fill="none"></path>
-      <path d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z" fill="currentColor"></path>
-    </svg>
+    <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h24v24H0z" fill="none"></path><path d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z" fill="currentColor"></path></svg>
   </div>
 </a>
 
-                {% endfor %}
-            </ul>
-        {% else %}
-            <h2 style="color:red;text-align: center;">Avval saytdan ro'yxatdan o'ting!</h2>
-           
-
-<button style="margin-top: 5%;margin-left:37% ;  background: linear-gradient(90deg, rgb(226, 102, 255), rgb(102, 126, 255));" >
- <a href="{% url 'users:login' %}" class="login">Login</a>
-     <div class="arrow-wrapper">
-        <div class="arrow"></div>
-
+      {% else %}
+        <div class="button-group">
+          <a href="{% url 'users:register' %}" class="btn-primary">Ro'yxatdan o'tish</a>
+          <a href="{% url 'users:login' %}" class="btn-secondary">Hisobga kirish</a>
+        </div>
+      {% endif %}
     </div>
-</button>
-           
+
+    <canvas id="starfield"></canvas>
+
+    <script>
+
+/* Xabar chiqish qismi uchun qilingan JS */
+window.addEventListener('DOMContentLoaded', function() {
+  const message = document.getElementById('login-success');
+  if (message) {
+    setTimeout(() => {
+      message.style.display = 'none';
+    }, 2000); // 2 soniyadan keyin yo‘qoladi
+  }
+});
 
 
-            <!-- From Uiverse.io by satyamchaudharydev --> 
-<button style="margin-left: 49%;margin-top: -4.5%;">
-    <a href="{% url 'users:register' %}" class="register">Register</a>
-    <div class="arrow-wrapper">
-        <div class="arrow"></div>
+      (function() {
+        'use strict';
 
-    </div>
-</button>
-           
+        function createStars(count) {
+          for (let i = 0; i < count; i++) {
+            const star = document.createElement('div');
+            star.className = 'star twinkle';
+            const x = Math.random() * 100;
+            const y = Math.random() * 100;
+            const size = Math.random() * 2 + 1;
+            const duration = Math.random() * 3 + 2;
+            star.style.left = x + '%';
+            star.style.top = y + '%';
+            star.style.width = size + 'px';
+            star.style.height = size + 'px';
+            star.style.animationDuration = duration + 's';
+            document.body.appendChild(star);
+          }
+        }
 
-        {% endif %}
-    </main>
+        function addAnimationStyles() {
+          const style = document.createElement('style');
+          style.textContent =
+            '@keyframes slideIn { from { transform: translateX(400px); opacity: 0; } to { transform: translateX(0); opacity: 1; } } ' +
+            '@keyframes slideOut { from { transform: translateX(0); opacity: 1; } to { transform: translateX(400px); opacity: 0; } }';
+          document.head.appendChild(style);
+        }
 
-</body>
+        function initialize() {
+          if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', function() {
+              createStars(100);
+              addAnimationStyles();
+            });
+          } else {
+            createStars(100);
+            addAnimationStyles();
+          }
+        }
+
+        initialize();
+      })();
+
+      const canvas = document.getElementById('starfield');
+      const ctx = canvas.getContext('2d');
+
+      function resize() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+      window.addEventListener('resize', resize);
+      resize();
+
+      const numStars = 150;
+      const stars = [];
+
+      for (let i = 0; i < numStars; i++) {
+        stars.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          radius: Math.random() * 1.5 + 0.5,
+          alpha: Math.random(),
+          delta: Math.random() * 0.02 + 0.01
+        });
+      }
+
+      function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        stars.forEach(star => {
+          ctx.beginPath();
+          ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(255,255,255,${star.alpha})`;
+          ctx.fill();
+          star.alpha += star.delta;
+          if (star.alpha <= 0 || star.alpha >= 1) star.delta *= -1;
+        });
+        requestAnimationFrame(animate);
+      }
+
+      animate();
+    </script>
+  </body>
+</html>
 
 {% endblock %}

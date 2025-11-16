@@ -77,16 +77,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'django4.wsgi.application'
 
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'djongo',
-#         'NAME': 'mydatabase',
-#         'CLIENT': {
-#             'host': 'mongodb://127.0.0.1:27017/'
-#         }
-#     }
-# }
-
 
 DATABASES = {
     'default': {
@@ -95,16 +85,6 @@ DATABASES = {
     }
 }
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'myproject',      # Bazaning nomi
-#         'USER': 'ozodbek',        # PostgreSQL foydalanuvchisi
-#         'PASSWORD': 'ozodbek', # Parolingiz
-#         'HOST': 'localhost',      # Lokal ulanish
-#         'PORT': '5432',           # PostgreSQL porti (standart)
-#     }
-# }
 
 
 
@@ -136,6 +116,7 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT =  "media-fayllar"  
+MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
@@ -159,7 +140,7 @@ JAZZMIN_SETTINGS = {
 }
 
 JAZZMIN_UI_TWEAKS = {
-    "theme": "cyborg",          # baza qoramtir
+    "theme": "cyborg",         
     "dark_mode_theme": "cyborg",
     "navbar": "navbar-dark",
     "sidebar": "sidebar-dark-primary",

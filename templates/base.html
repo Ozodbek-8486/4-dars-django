@@ -1,25 +1,27 @@
 {% load static %}
-
+<!DOCTYPE html>
 <html lang="uz">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Bosh sahifa{% endblock %}</title>
 
-    <!-- Tailwand CSS uchun link -->
-    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
-
-    <!-- Bootstrap CSS uchun link -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"crossorigin="anonymous">
-
-
+    <!-- Bootstrap CSS -->
+    <link 
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" 
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous">
 
     <style>
-      body {
+      /* body {
         background-color: #f8f9fa;
         font-family: "Poppins", sans-serif;
-      }
+      } */
 
+
+      
+      /* Navbar style */
       .navbar {
         background: linear-gradient(90deg, #007bff, #6610f2);
       }
@@ -27,12 +29,23 @@
       .navbar-brand, .nav-link {
         color: white !important;
         font-weight: 500;
+        transition: color 0.2s ease;
       }
 
       .navbar-brand:hover, .nav-link:hover {
         color: #ffc107 !important;
       }
 
+      /* 🔥 Active link style */
+ .nav-link.active {
+    color: #ffc107 !important;
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 13px; 
+    text-decoration-thickness: 2px; 
+}
+
+      /* Container styling */
       .content-wrapper {
         background: white;
         border-radius: 15px;
@@ -42,7 +55,7 @@
         margin-bottom: 40px;
       }
 
-     
+      /* Flash messages */
       .message {
         padding: 10px 15px;
         border-radius: 8px;
@@ -69,19 +82,15 @@
       footer a:hover {
         text-decoration: underline;
       }
-      
     </style>
   </head>
 
-  <body>
+  <body class="{% block body_class %}{% endblock %}">
 
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg">
+    <nav class="navbar navbar-expand-lg align-items-center">
       <div class="container-fluid">
-        <a class="navbar-brand" href="{% url 'landing' %}">📚 Kitoblar olami</a>
-
-
-        
+        <a class="navbar-brand" href="{% url 'landing' %}"> <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path fill="currentColor" d="M26.68 7.858a.6.6 0 0 0-.607-.083l-9.66 4.183c-.42.183-.946.27-1.486.27c-.753.003-1.532-.172-2.075-.41a2.5 2.5 0 0 1-.47-.26q.061-.03.145-.064l8.786-3.804l1.31.56V6.613a.78.78 0 0 0-.283-.612a.59.59 0 0 0-.605-.083l-9.66 4.183c-.298.12-.554.268-.77.483a1.33 1.33 0 0 0-.395.934c0 .01.003.027.003.027v14.73l-.002.02l.003.01v.016h.002c.02.515.28.843.528 1.075c.78.688 2.09 1.073 3.484 1.093c.66 0 1.33-.1 1.95-.366l9.663-4.184c.255-.11.422-.383.422-.692V8.47a.78.78 0 0 0-.283-.612m-6.127-2.8c-.017-.22-.108-.43-.27-.556a.6.6 0 0 0-.607-.083L10.016 8.6c-.42.182-.947.27-1.486.27c-.753.002-1.532-.173-2.075-.412a2.5 2.5 0 0 1-.47-.258q.061-.03.145-.064l8.787-3.804l1.31.56V3.257a.78.78 0 0 0-.284-.612a.6.6 0 0 0-.606-.083l-9.66 4.184c-.298.12-.553.267-.77.483a1.33 1.33 0 0 0-.394.934c0 .012.003.028.003.028v14.777h.002c.02.515.28.843.528 1.075c.78.688 2.09 1.072 3.485 1.092a5.6 5.6 0 0 0 1.127-.122V11.544c-.01-.7.27-1.372.762-1.856a3.5 3.5 0 0 1 1.19-.756z"/></svg>  Kitoblar olami</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" 
                 aria-expanded="false" aria-label="Toggle navigation">
@@ -91,31 +100,70 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
-            <li class="nav-item">
-              <a class="nav-link active" href="{% url 'landing' %}">🏠 Bosh sahifa</a>
-            </li>
-
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'books:book_list' %}">📖 Kitoblar</a>
-            </li>
-
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                👤 Hisob
+            <!-- 🏠 Bosh sahifa -->
+            <li class="nav-item" style="margin-top: 2.7%;">
+              <a class="nav-link {% if request.resolver_match.url_name == 'landing' %}active{% endif %}" 
+                 href="{% url 'landing' %}"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M4 21V9l8-6l8 6v12h-6v-7h-4v7z"/></svg>
+                  Bosh sahifa
               </a>
+            </li>
+
+            <!-- 📖 Kitoblar -->
+         {% if user.is_authenticated %}
+<li class="nav-item" style="margin-top: 2.7%;">
+  <a class="nav-link {% if request.resolver_match.url_name == 'book_list' %}active{% endif %}" 
+     href="{% url 'books:book_list' %}">
+     
+     <!-- SVG Ikonka -->
+     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+       <path fill="currentColor" d="M26.68 7.858a.6.6 0 0 0-.607-.083l-9.66 4.183c-.42.183-.946.27-1.486.27c-.753.003-1.532-.172-2.075-.41a2.5 2.5 0 0 1-.47-.26q.061-.03.145-.064l8.786-3.804l1.31.56V6.613a.78.78 0 0 0-.283-.612a.59.59 0 0 0-.605-.083l-9.66 4.183c-.298.12-.554.268-.77.483a1.33 1.33 0 0 0-.395.934c0 .01.003.027.003.027v14.73l-.002.02l.003.01v.016h.002c.02.515.28.843.528 1.075c.78.688 2.09 1.073 3.484 1.093c.66 0 1.33-.1 1.95-.366l9.663-4.184c.255-.11.422-.383.422-.692V8.47a.78.78 0 0 0-.283-.612m-6.127-2.8c-.017-.22-.108-.43-.27-.556a.6.6 0 0 0-.607-.083L10.016 8.6c-.42.182-.947.27-1.486.27c-.753.002-1.532-.173-2.075-.412a2.5 2.5 0 0 1-.47-.258q.061-.03.145-.064l8.787-3.804l1.31.56V3.257a.78.78 0 0 0-.284-.612a.6.6 0 0 0-.606-.083l-9.66 4.184c-.298.12-.553.267-.77.483a1.33 1.33 0 0 0-.394.934c0 .012.003.028.003.028v14.777h.002c.02.515.28.843.528 1.075c.78.688 2.09 1.072 3.485 1.092a5.6 5.6 0 0 0 1.127-.122V11.544c-.01-.7.27-1.372.762-1.856a3.5 3.5 0 0 1 1.19-.756z"/>
+     </svg>
+     
+     Kitoblar
+  </a>
+</li>
+{% endif %}
 
 
+            
+
+           <!-- 👤 Hisob dropdown -->
+                  
+            <li class="nav-item dropdown  d-flex align-items-center">
+                {% if user.is_authenticated %}
+
+              <a class="nav-link dropdown-toggle {% if request.resolver_match.url_name in 'profile login register logout' %}active{% endif %}" 
+                 href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> 
+
+                    {% if user.profile_pictures %}
+        <img src="{{ user.profile_pictures.url }}" alt="Profil rasmi" 
+             class="rounded-circle border border-3 border-primary shadow-sm"
+             style="width: 50px; height: 50px; object-fit: cover;">
+                     {% else %}
+        <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png"
+             alt="Default profil rasmi" 
+             class="rounded-circle border border-3 border-secondary shadow-sm"
+             style="width: 50px; height: 50px; object-fit: cover;">
+                     {% endif %}
+
+                {{ user.first_name}}
+      </a>
+              {% endif %}
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="{% url 'users:profile' %}" aria-colspan="shaxsiy">Shaxsiy hisob</a></li>
-
                 {% if request.user.is_authenticated %}
-                  <li><a class="dropdown-item text-danger" href="{% url 'users:logout' %}">Chiqish</a></li>
-                {% else %}
-                  <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="{% url 'users:login' %}">Kirish</a></li>
                   <li>
-                    <a class="dropdown-item" href="{% url 'users:register' %}">
-                      <button class="btn btn-sm btn-primary w-100 mt-2">Ro‘yxatdan o‘tish</button>
+                    <a class="dropdown-item {% if request.resolver_match.url_name == 'users:profile' %}active{% endif %}"
+                       href="{% url 'users:profile' %}"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M12 4a8 8 0 0 0-6.96 11.947A4.99 4.99 0 0 1 9 14h6a4.99 4.99 0 0 1 3.96 1.947A8 8 0 0 0 12 4m7.943 14.076q.188-.245.36-.502A9.96 9.96 0 0 0 22 12c0-5.523-4.477-10-10-10S2 6.477 2 12a9.96 9.96 0 0 0 2.057 6.076l-.005.018l.355.413A9.98 9.98 0 0 0 12 22q.324 0 .644-.02a9.95 9.95 0 0 0 5.031-1.745a10 10 0 0 0 1.918-1.728l.355-.413zM12 6a3 3 0 1 0 0 6a3 3 0 0 0 0-6" clip-rule="evenodd"/></svg> Shaxsiy hisob</a>
+                  </li>
+                  <li><a class="dropdown-item text-danger" href="{% url 'users:logout' %}"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="none"><path d="m12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035q-.016-.005-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427q-.004-.016-.017-.018m.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093q.019.005.029-.008l.004-.014l-.034-.614q-.005-.018-.02-.022m-.715.002a.02.02 0 0 0-.027.006l-.006.014l-.034.614q.001.018.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01z"/><path fill="currentColor" d="M12 2.5a1.5 1.5 0 0 1 0 3H7a.5.5 0 0 0-.5.5v12a.5.5 0 0 0 .5.5h4.5a1.5 1.5 0 0 1 0 3H7A3.5 3.5 0 0 1 3.5 18V6A3.5 3.5 0 0 1 7 2.5Zm6.06 5.61l2.829 2.83a1.5 1.5 0 0 1 0 2.12l-2.828 2.83a1.5 1.5 0 1 1-2.122-2.122l.268-.268H12a1.5 1.5 0 0 1 0-3h4.207l-.268-.268a1.5 1.5 0 1 1 2.122-2.121Z"/></g></svg> Chiqish</a></li>
+                {% else %}
+                  <li><a class="dropdown-item {% if request.resolver_match.url_name == 'users:login' %}active{% endif %}"
+                         href="{% url 'users:login' %}"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M3.5 9.568v4.864c0 2.294 0 3.44.722 4.153c.655.647 1.674.706 3.596.712l-.015-.105c-.115-.844-.115-1.916-.115-3.247v-.053c0-.403.331-.73.74-.73c.408 0 .739.327.739.73c0 1.396.001 2.37.101 3.105c.098.714.275 1.093.548 1.362s.656.445 1.379.54c.744.1 1.731.101 3.146.101h.985c1.415 0 2.401-.002 3.146-.1c.723-.096 1.106-.272 1.378-.541c.273-.27.451-.648.548-1.362c.1-.734.102-1.709.102-3.105V8.108c0-1.397-.002-2.37-.102-3.105c-.097-.714-.275-1.093-.547-1.362c-.273-.27-.656-.445-1.38-.54C17.728 3 16.742 3 15.327 3h-.985c-1.415 0-2.402.002-3.146.1c-.723.096-1.106.272-1.379.541c-.273.27-.45.648-.548 1.362c-.1.734-.101 1.708-.101 3.105c0 .403-.331.73-.74.73a.734.734 0 0 1-.739-.73v-.053c0-1.33 0-2.403.115-3.247l.015-.105c-1.922.006-2.94.065-3.596.712c-.722.713-.722 1.86-.722 4.153m9.885 5.38l2.464-2.432a.723.723 0 0 0 0-1.032l-2.464-2.432a.746.746 0 0 0-1.045 0a.723.723 0 0 0 0 1.032l1.202 1.186H6.457a.734.734 0 0 0-.74.73c0 .403.331.73.74.73h7.085l-1.202 1.186a.723.723 0 0 0 0 1.032a.746.746 0 0 0 1.045 0" clip-rule="evenodd"/></svg>Kirish</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li>
+                    <a class="dropdown-item {% if request.resolver_match.url_name == 'users:register' %}active{% endif %}" 
+                       href="{% url 'users:register' %}">
+                      <button class="btn btn-sm btn-primary w-100 mt-2"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M15 14c-2.67 0-8 1.33-8 4v2h16v-2c0-2.67-5.33-4-8-4m-9-4V7H4v3H1v2h3v3h2v-3h3v-2m6 2a4 4 0 0 0 4-4a4 4 0 0 0-4-4a4 4 0 0 0-4 4a4 4 0 0 0 4 4"/></svg> Ro‘yxatdan o‘tish</button>
                     </a>
                   </li>
                 {% endif %}
@@ -123,13 +171,11 @@
             </li>
           </ul>
 
-         
+        
         </div>
       </div>
     </nav>
 
-
-    
     <div class="container">
       {% if messages %}
         {% for message in messages %}
@@ -141,62 +187,17 @@
     </div>
 
 
-    <div class="container content-wrapper">
+    <div class="container content-wrapper" style="background: linear-gradient(180deg, #323575 0%, #313266 50%, #3e4188 100%);height: 700px;">
       {% block content %}{% endblock %}
+
+  
     </div>
 
-
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"crossorigin="anonymous"></script>
-
-
+ 
+    <script 
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous">
+    </script>
   </body>
-<!-- <script>
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-        navigator.serviceWorker.register("{% static 'js/service-worker.js' %}")
-        .then(reg => console.log('SW registered'))
-        .catch(err => console.warn('SW registration failed:', err));
-    });
-}
-</script> -->
-
-<!-- <script>
-(function() {
-    const intervalMs = 10000; // 10 soniya
-    const heartbeatUrl = "{% url 'heartbeat' %}";
-    let offlineShown = false;
-
-    async function checkHeartbeat() {
-        try {
-            const res = await fetch(heartbeatUrl, { method:'GET', cache:'no-store', credentials:'same-origin' });
-            if (!res.ok) showOffline();
-            else if (offlineShown && window.location.pathname === '/offline/') window.location.replace('/');
-        } catch(err) {
-            showOffline();
-        }
-    }
-
-    function showOffline() {
-        if (offlineShown) return;
-        offlineShown = true;
-        window.location.replace("{% url 'offline' %}");
-    }
-
-    window.addEventListener('load', () => {
-        checkHeartbeat();
-        setInterval(checkHeartbeat, intervalMs);
-    });
-
-    window.addEventListener('offline', showOffline);
-    window.addEventListener('online', () => {
-    if (window.location.pathname === '/offline/') {
-        window.location.replace('/');
-    }
-});
-
-
-})();
-</script> -->
-
 </html>
